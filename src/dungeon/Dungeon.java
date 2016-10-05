@@ -19,12 +19,12 @@ public class Dungeon {
     }
 
     public void run() {
-
         Character character = new Character(0, 0, length, height);
         Player player = new Player(0, 0, length, height);
         Vampires vampires = new Vampires(this.numberOfVampires, length, height);
         vampires.createVampires();
         Scanner input = new Scanner(System.in);
+        
         while (true) {
             if (moves == 0 && numberOfVampires != 0) {
                 System.out.println("YOU LOSE");
@@ -35,8 +35,8 @@ public class Dungeon {
                 break;
             }
             printGame(player, vampires);
-            System.out.println("");
             while (true) {
+                System.out.println("");
                 String playerMove = input.nextLine();
                 //String playerMove = "d";
                 if (checkInput(playerMove)) {
@@ -44,15 +44,15 @@ public class Dungeon {
                         character.moveInput(playerMove, player, vampires, vampiresMove);
                         break;
                     } catch (Exception e) {
-                        System.out.println("outwith boundaries please try again");
+                        break;
                     }
                 } else {
-                   System.out.println("not a correct input please try again");
+                    System.out.println("not a correct input please try again");
                 }
             }
             numberOfVampires = vampires.howManyVampires();
             moves--;
-        }
+       }
     }
 
     private boolean checkInput(String input) {

@@ -59,6 +59,15 @@ public class Vampires {
         }
     } 
 
+    /*
+    public void createVampires() {
+        vampires.add(new Vampire(1, 0, length, height));
+        vampires.add(new Vampire(4, 3, length, height));
+        vampires.add(new Vampire(3, 4, length, height));
+        vampires.add(new Vampire(2, 1, length, height));
+        vampires.add(new Vampire(4, 4, length, height));
+    }*/
+
     private int randomCoordinate(int boundary) {
         return new Random().nextInt(boundary);
     }

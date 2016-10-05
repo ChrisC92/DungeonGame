@@ -17,7 +17,6 @@ public class Character {
     public void moveInput(String movement, Character player, Vampires vampires, boolean vampiresMove) throws IllegalArgumentException {
         char[] split = movement.toCharArray();
         Character testPlayer = new Player(player.getX(), player.getY(), length, height);
-        if (testPlayersMovement(split, testPlayer)) {
             for (char move : split) {
                 player.movement(move, player.x, player.y);
                 vampires.checkHit(player);
@@ -26,8 +25,7 @@ public class Character {
                     vampires.moveVampires();
                     vampires.checkHit(player);
                 }
-            }
-        }
+            }  
     }
 
     public int getX() {
@@ -44,14 +42,6 @@ public class Character {
 
     public boolean characterMeet(Character char1, Character char2) {
         return char1.getCoordinates().equals(char2.getCoordinates());
-    }
-
-    private boolean testPlayersMovement(char[] movement, Character player) throws IllegalArgumentException {
-        for (char oneStep : movement) {
-            player.movement(oneStep, x, y);
-
-        }
-        return true;
     }
 
     public void movement(char move, int xMove, int yMove) {
@@ -83,6 +73,34 @@ public class Character {
     private boolean withinBoundarys(int xMove, int yMove) {
         return (xMove < length && yMove < height && xMove >= 0 && yMove >= 0);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + this.x;
+        hash = 61 * hash + this.y;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Character other = (Character) obj;
+        if (this.x != other.x) {
+            return false;
+        }
+        return this.y == other.y;
+    }
+    
+    
     
     @Override
     public String toString() {
