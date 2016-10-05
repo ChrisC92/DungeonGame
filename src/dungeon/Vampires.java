@@ -27,12 +27,9 @@ public class Vampires {
     public void moveVampires() {
         for (Vampire vampire : vampires) {
             while (true) {
-                try {
                     char move = vampire.makeRandomMove();
                     vampire.movement(move, length, length);
                     break;
-                } catch (Exception e) {
-                }
             }
         }
     }

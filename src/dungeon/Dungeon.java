@@ -40,12 +40,8 @@ public class Dungeon {
                 String playerMove = input.nextLine();
                 //String playerMove = "d";
                 if (checkInput(playerMove)) {
-                    try {
                         character.moveInput(playerMove, player, vampires, vampiresMove);
                         break;
-                    } catch (Exception e) {
-                        break;
-                    }
                 } else {
                     System.out.println("not a correct input please try again");
                 }

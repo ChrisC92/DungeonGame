@@ -14,18 +14,17 @@ public class Character {
         this.length = length;
     }
 
-    public void moveInput(String movement, Character player, Vampires vampires, boolean vampiresMove) throws IllegalArgumentException {
+    public void moveInput(String movement, Character player, Vampires vampires, boolean vampiresMove) {
         char[] split = movement.toCharArray();
-        Character testPlayer = new Player(player.getX(), player.getY(), length, height);
-            for (char move : split) {
-                player.movement(move, player.x, player.y);
-                vampires.checkHit(player);
+        for (char move : split) {
+            player.movement(move, player.x, player.y);
+            vampires.checkHit(player);
 
-                if (vampiresMove) {
-                    vampires.moveVampires();
-                    vampires.checkHit(player);
-                }
-            }  
+            if (vampiresMove) {
+                vampires.moveVampires();
+                vampires.checkHit(player);
+            }
+        }
     }
 
     public int getX() {
@@ -47,26 +46,23 @@ public class Character {
     public void movement(char move, int xMove, int yMove) {
         xMove = x;
         yMove = y;
-        while (true) {
-            if (move == 'w') {
-                yMove -= 1;
-            }
-            if (move == 'd') {
-                xMove += 1;
-            }
-            if (move == 's') {
-                yMove += 1;
-            }
-            if (move == 'a') {
-                xMove -= 1;
-            }
-            if (this.withinBoundarys(xMove, yMove)) {
-                x = xMove;
-                y = yMove;
-                break;
-            } else {
-                throw new IllegalArgumentException("Invalid Input");
-            }
+
+        if (move == 'w') {
+            yMove -= 1;
+        }
+        if (move == 'd') {
+            xMove += 1;
+        }
+        if (move == 's') {
+            yMove += 1;
+        }
+        if (move == 'a') {
+            xMove -= 1;
+        }
+        if (this.withinBoundarys(xMove, yMove)) {
+            x = xMove;
+            y = yMove;
+
         }
     }
 
@@ -99,9 +95,7 @@ public class Character {
         }
         return this.y == other.y;
     }
-    
-    
-    
+
     @Override
     public String toString() {
         return x + " " + y;
